@@ -1,12 +1,310 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>试题管理-用户管理</title>
-    <link rel="stylesheet" href="bs/css/bootstrap.min.css">
-    <meta name="viewport"  content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+    <!-- <script type="text/javascript" src="js/jq.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/manager.css">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/user_manager.js"></script>
+</head>
 
-  </body>
+<body>
+    <div class="container-fluid">
+        <div class="col-sm-3 col-md-3">
+            <ul class="nav nav-pills nav-stacked navi">
+                <li role="presentation" class="active" id="personalMessage" ) "><a href="# ">个人信息</a></li>
+                <li role="presentation"><a href="# ">创建题目</a>
+                    <ul class="nav nav-pills nav-stacked ">
+                        <li id = "radioQuestion"><a href="# ">单选题</a></li>
+                        <li id = "checkboxQuestion"><a href="# ">多选题</a></li>
+                        <li id = "trueFalseQuestion"><a href="# ">判断题</a></li>
+                        <li id ="essayQuestion"><a href="# ">问答题</a></li>
+                    </ul>
+                </li>
+                <li role="presentation"><a href="# ">题目管理</a>
+                    <ul class="nav nav-pills nav-stacked ">
+                        <li id ="myQuestion"><a href="# ">查看我的题目</a></li>
+                    </ul>
+                </li>
+                <li role="presentation"><a href="# ">试卷管理</a>
+                    <ul class="nav nav-pills nav-stacked ">
+                        <li id="searchPaper"><a href="# ">查看试卷</a></li>
+                        <li id="createPaper"><a href="# ">创建试卷</a></li>
+                        <li id="editorPaper"><a href="# ">添加题目到试卷</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-md-9">
+            <!--个人信息板块-->
+            <div class="row partContent hideQuestion personalMessage" id="personalMessagePart ">
+                <h1>个人信息</h1>
+                <div class="col-sm-3 col-md-3 ">
+                    <img src="http://hyrz.appgame.com/wp-content/uploads/sites/135/2015/10/20151010091232249.jpg " class="img-responsive " alt=" ">
+                </div>
+                <div class="col-sm-3 col-md-3 ">
+                    <p><strong>昵称: </strong>抉择的门</p>
+                    <p><strong>用户名: </strong>dawndevil</p>
+                </div>
+                <hr>
+            </div>
+            <!--创建试卷板块-->
+            <div class="form-horizontal hideQuestion createMyPaper">
+                <h1>创建试卷<small style="color:red">new</small></h1>
+                <div class="form-horizontal" action="index.html" method="post">
+                    <div class="form-group ">
+                        <label>试卷标题</label>
+                        <input id="createNewPaperTitile" type="text" class="form-control" name="" value="">    
+                        <label for="">学科类型</label>
+                        <select id="createNewPaperSubject" class="form-control">
+
+                        </select>
+                    </div>
+                    <button type="button" id="createNewPaper" class="btn btn-info">创建试卷</button>
+                </div>
+                <hr>
+            </div>
+
+             <!--编辑创建的试卷板块-->
+            <div class="form-horizontal hideQuestion EditorPaper">
+                <h1>编辑试卷<small style="color:red">new</small></h1>
+                <div class="form-horizontal" action="index.html" method="post">
+                    <button type="button" id="addRadio" class="btn btn-info">添加单选题</button>
+                    <button type="button" id="addCheckBox" class="btn btn-info">添加多选题</button>
+                    <button type="button" id="addTf" class="btn btn-info">添加判断题</button>
+                    <button type="button" id="addEssay" class="btn btn-info">添加简答题</button>
+                </div>
+                <hr>
+                <div class="form-group ">
+                    <label>试卷号</label>
+                    <input type="text" class="form-control" id="editorPaperId" value="">
+                    <label>分值</label>
+                    <input type="text" class="form-control" id="editorPaperQuestionGrade" value="">
+                </div>
+            </div>
+
+            <!--单项选择题板块-->
+            <div class="form-horizontal hideQuestion radioQuestion" action="index.html" method="post">
+                <h1>单项选择 <small style="color:red ">new</small></h1>
+                <div class="form-inline ">
+                    <div class="form-group ">
+                        <label for="">学科类型</label>
+                        <select id="radioSubject" class="form-control">
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label>题目</label>
+                    <textarea id="radioTitle" class="form-control " rows="5"></textarea>
+                </div>
+                <br/>
+                <div class="form-group ">
+                    <label class="col-sm-1 control-label ">A.</label>
+                    <div class="col-sm-11 ">
+                        <input name="radioAnswers" type="text" class="form-control" placeholder="Answer1">
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-sm-1 control-label ">B.</label>
+                    <div class="col-sm-11 ">
+                        <input name="radioAnswers" type="text" class="form-control" placeholder="Answer2">
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-sm-1 control-label ">C.</label>
+                    <div class="col-sm-11 ">
+                        <input name="radioAnswers" type="text" class="form-control" placeholder="Answer3">
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-sm-1 control-label ">D.</label>
+                    <div class="col-sm-11 ">
+                        <input name="radioAnswers" type="text" class="form-control" placeholder="Answer4">
+                    </div>
+                </div>
+                <div class="form-inline">
+                    <div class="form-group">
+                        <label for="">正确答案</label>
+                        <select id="radioRightAnswer" class="form-control">
+                            <option>A</option>
+                            <option>B</option>
+                            <option>C</option>
+                            <option>D</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary " id="radioSubmit">提交</button>
+                <hr>
+            </div>
+            <!--多项选择题板块-->
+            <div class="form-horizontal hideQuestion checkboxQuestion" action="index.html" method="post">
+                <h1>多选题<small style="color:red ">new</small></h1>
+                <div class="form-inline ">
+                    <div class="form-group ">
+                        <label for="">学科类型</label>
+                        <select id="checkBoxSubject" class="form-control">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>题目</label>
+                    <textarea id="checkBoxTitle" class="form-control" rows="5"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">A.</label>
+                    <div class="col-sm-9">
+                        <input name="checkBoxAnswers" type="text" class="form-control" placeholder="Answer1">
+                    </div>
+<!--                     <button type="button" class="btn btn-danger col-sm-1" name="button">删除</button> -->
+                    <label class="col-sm-1 control-label">
+                        <input name="checkBoxRightAnswers" type="checkbox" value="">正确
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">B.</label>
+                    <div class="col-sm-9">
+                        <input name="checkBoxAnswers" type="text" class="form-control" placeholder="Answer2">
+                    </div>
+<!--                     <button type="button" class="btn btn-danger col-sm-1" name="button">删除</button> -->
+                    <label class="col-sm-1 control-label ">
+                        <input name="checkBoxRightAnswers" type="checkbox" value="">正确
+                    </label>
+                </div>
+                 <div class="form-group">
+                    <label class="col-sm-1 control-label">C.</label>
+                    <div class="col-sm-9">
+                        <input name="checkBoxAnswers" type="text" class="form-control" placeholder="Answer3">
+                    </div>
+<!--                     <button type="button" class="btn btn-danger col-sm-1" name="button">删除</button> -->
+                    <label class="col-sm-1 control-label ">
+                        <input name="checkBoxRightAnswers" type="checkbox" value="">正确
+                    </label>
+                </div>
+                 <div class="form-group">
+                    <label class="col-sm-1 control-label">D.</label>
+                    <div class="col-sm-9">
+                        <input name="checkBoxAnswers" type="text" class="form-control" placeholder="Answer4">
+                    </div>
+<!--                     <button type="button" class="btn btn-danger col-sm-1" name="button">删除</button> -->
+                    <label class="col-sm-1 control-label ">
+                        <input name="checkBoxRightAnswers" type="checkbox" value="">正确
+                    </label>
+                </div>
+                <div class="btn-group">
+                    <!-- <button type="button" class="btn btn-warning" name="button">新增选项</button> -->
+                    <button id="checkBoxSubmit" type="submit" class="btn btn-primary" name="submit">提交</button>
+                </div>
+                <hr>
+            </div>
+            <!--判断题板块-->
+            <div class="form-horizontal hideQuestion trueFalseQuestion" action="index.html" method="post">
+                <h1>判断题<small style="color:red ">new</small> </h1>
+                <div class="form-inline">
+                    <div class="form-group">
+                        <label for="">学科类型</label>
+                        <select id="trueFalseSubject" class="form-control">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>题目</label>
+                    <textarea id="tfTitle" class="form-control" rows="5 "></textarea>
+                </div>
+                <div class="form-group ">
+                    <label class="radio-inline">
+                        <input type="radio" name="tfChoice" value="1" checked>正确
+                    </label>
+                    <label class="radio-inline ">
+                        <input type="radio" name="tfChoice" value="0">错误
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary" id="tfSubmit" name="submit">提交</button>
+                <hr>
+            </div>
+            <!--问答题板块-->
+            <div class="form-horizontal hideQuestion essayQuestion " action="index.html" method="post ">
+                <h1>问答题<small style="color:red ">new</small></h1>
+                <div class="form-inline ">
+                    <div class="form-group ">
+                        <label for="">学科类型</label>
+                        <select id="essaySubject" class="form-control">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label>题目</label>
+                    <textarea id = "essayTitle" class="form-control" rows="5"></textarea>
+                </div>
+                <div class="form-group ">
+                    <label>答案</label>
+                    <textarea id ="essayAnswer" class="form-control" rows="5"></textarea>
+                </div>
+                <button type="submit" id="essaySubmit" class="btn btn-primary" name="submit">提交</button>
+                <hr>
+            </div>
+
+            <!--查看我的题目模块-->
+            <div class="form-horizontal hideQuestion myQuestion" action="index.html " method="post ">
+              <h1>我的题目</h1>
+              <table class="table table-hover ">
+              <thead>
+                <tr>
+                  <td>
+                  <input type="checkbox" id="selectAll">
+                  </td>  
+                  <td>题目号</td>
+                  <td>创建人</td>
+                  <td>学科</td>
+                  <td>题目类型</td>
+                  <td>题目</td>
+                  <td>操作</td>
+                </tr>
+              </thead>
+              <tbody id="tableBody">
+              </tbody>
+              </table>
+
+                <div id="nowPageAndTotalPages"></div>
+<!--                 <button type="button" class="btn btn-success">添加</button> -->
+                <button id="deleteQuestion" type="button" class="btn btn-danger">删除</button>
+                <button type="button" id="lastPage" class="btn btn-info">上一页</button>
+                <button type="button" id="nextPage" class="btn btn-info">下一页</button>
+            </div>
+
+            <!--查看我的试卷模块-->
+            <div class="form-horizontal hideQuestion myPaper" action="index.html " method="post">
+              <h1>我的试卷</h1>
+              <table class="table table-hover ">
+              <thead>
+                <tr>
+                  <td>
+                  <input type="checkbox" id="selectAll">
+                  </td>  
+                  <td>试卷号</td>
+                  <td>创建人</td>
+                  <td>题目</td>
+                  <td>创建日期</td>
+                  <td>操作</td>
+                </tr>
+              </thead>
+              <tbody id="PapertableBody">
+              </tbody>
+              </table>
+
+                <div id="PapernowPageAndTotalPages"></div>
+<!--                 <button type="button" class="btn btn-success">添加</button> -->
+                <button id="deletePaper" type="button" class="btn btn-danger">删除</button>
+                <button type="button" id="lastPage" class="btn btn-info">上一页</button>
+                <button type="button" id="nextPage" class="btn btn-info">下一页</button>
+            </div>
+        </div>
+</body>
+
 </html>

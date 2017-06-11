@@ -4,9 +4,24 @@
     <meta charset="utf-8">
     <title>试题管理-登录</title>
     <link rel="stylesheet" href="bs/css/bootstrap.min.css">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+		$('#bt').click(function(){
+    		console.log($('#se')[0].value);
+    	});
+    });
+    	
+    </script>
     <meta name="viewport"  content="width=device-width, initial-scale=1">
   </head>
   <body>
-    
+    <select id='se'>
+    	<option value="sdadasd">123</option>
+    	<option>321</option>
+    	<option>222</option>
+    	<option>444</option>
+    </select>
+    <button id='bt'>hello</button>
   </body>
 </html>

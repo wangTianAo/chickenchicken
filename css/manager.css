@@ -1,0 +1,33 @@
+.navi li {
+    list-style: none;
+}
+
+.navi li ul {
+    position: absolute;
+    left: 100%;
+    width: 150px;
+    top: 0px;
+    display: none;
+    z-index: 10000;
+}
+
+.navi li:hover ul {
+    display: block;
+    transition: display 1s;
+}
+
+.hideQuestion {}
+
+.personalMessage {}
+
+.radioQuestion {}
+
+.checkboxQuestion{}
+
+.trueFalseQuestion{}
+
+.myQuestion{}
+
+.tfTitle{}
+
+.createMyPaper{}

@@ -1,0 +1,43 @@
+.mainTable {
+    margin-top: 200px;
+}
+
+.defaultFont {
+    font-family: "Microsoft YaHei";
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.textRight {
+    text-align: right;
+}
+
+.textLeft {
+    text-align: left;
+}
+
+.buttonRegister {
+    width: 150px;
+}
+
+.username {
+    padding-bottom: 25px;
+    width: 700px;
+}
+
+.password {
+    padding-bottom: 25px;
+    width: 700px;
+    margin-left: 8px;
+}
+
+.inputClass{
+	width: 250px;
+}

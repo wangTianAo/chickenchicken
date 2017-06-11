@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>404</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script type="text/javascript" src="js/jq.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        var custom = new Custom();
+        var params = custom.getQueryParams(window.location.href);
+        switch(params.error){
+          case '0': $("#error").text("题目或者试卷id不存在");break;
+          case '1': $("#error").text("测试试卷不合法");break;
+          default:  $("#error").text("未知错误");
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div class="jumbotron" style="text-align:center">
+      <h1>错误提示:</h1>
+      <h1 id='error'></h1>
+    </div>
+  </body>
+</html>
